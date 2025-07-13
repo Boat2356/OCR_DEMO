@@ -13,13 +13,13 @@ dtype = torch.bfloat16 if torch.cuda.is_bf16_supported() else torch.float16
 
 # โหลดโมเดลบน GPU ด้วย dtype ที่เหมาะสม
 model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-    "scb10x/typhoon-ocr-7b", 
+    "scb10x/typhoon-ocr-3b", 
     torch_dtype=dtype,
     device_map="auto"  # หรือจะใช้ .to(device) ด้านล่างก็ได้
 ).eval()
 
 # โหลด processor
-processor = AutoProcessor.from_pretrained("scb10x/typhoon-ocr-7b")
+processor = AutoProcessor.from_pretrained("scb10x/typhoon-ocr-3b")
 
 @app.post("/ocr")
 async def ocr(
